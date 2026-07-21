@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Historias de la Tripulación</title>
+<title>La Leyenda de los Derrotados</title>
 
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
@@ -14,57 +14,92 @@
 </head>
 <body>
 
-<div id="bookQuote">
-    Cada villano tiene una historia que contar
-    <span style="font-size: 15px; color:#767433; text-shadow: none; font-weight: 900">¿Quieres saber la suya?</span>
-</div>
+<div class="container">
+  
+  <!-- PANTALLA DE INICIO -->
+  <div id="startScreen" class="screen active">
+    <div class="start-content">
+      <h1 class="title-main">La Leyenda de los Derrotados</h1>
+      <div class="divider"></div>
+      <p class="subtitle">Un cuento sobre villanos, destino y segundas oportunidades</p>
+      <button id="startBtn" class="btn-start">Comenzar la Historia</button>
+      <p class="hint">Presiona ESC en cualquier momento para volver aquí</p>
+    </div>
+  </div>
 
-<div class="scene">
+  <!-- PANTALLA DE LECTURA -->
+  <div id="storyScreen" class="screen">
+    
+    <!-- FONDO VISUAL -->
+    <div id="storyBackground" class="story-bg"></div>
+    
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="story-container">
+      
+      <!-- LADO IZQUIERDO - NARRACIÓN -->
+      <div class="narrative-panel">
+        <div class="chapter-info">
+          <span id="chapterNum" class="chapter-number">Cap. 1</span>
+          <h2 id="chapterTitle" class="chapter-title">El Comienzo</h2>
+        </div>
+        
+        <div id="narrativeText" class="narrative-text">
+          <!-- El texto se inserta aquí -->
+        </div>
+        
+        <div class="narrative-footer">
+          <span id="pageIndicator" class="page-indicator">Página 1 de 10</span>
+        </div>
+      </div>
 
-    <!-- PORTADA -->
+      <!-- LADO DERECHO - PERSONAJE O ILUSTRACIÓN -->
+      <div class="visual-panel">
+        <div id="characterArt" class="character-art">
+          <!-- Imagen o ilustración -->
+        </div>
+        <div id="characterName" class="character-name">
+          <!-- Nombre del personaje o locación -->
+        </div>
+      </div>
 
-    <div id="cover">
-        <img
-        src="https://i.gyazo.com/a68c1fff6f16cb8fee2199ac511af738.png"
-        alt="Portada">
     </div>
 
-    <!-- LIBRO -->
-
-    <div id="book">
-
-        <!-- IMAGEN DEL LIBRO -->
-
-        <div id="page"></div>
-
-        <!-- CONTENIDO HTML -->
-
-        <div id="pageContent"></div>
-
-        <!-- HOJA QUE GIRA -->
-
-        <div id="pageFlip">
-            <img
-            src="https://i.gyazo.com/c8929fb691d46c15c0ec9ad0656e13ba.png"
-            alt="Página">
-        </div>
-
-        <!-- NAVEGACIÓN -->
-
-        <div id="prevBtn">
-            ❮
-        </div>
-
-        <div id="nextBtn">
-            ❯
-        </div>
-
-        <!-- CONTADOR DE PÁGINAS -->
-        <div id="pageCounter">
-            <span id="currentPage">1</span> / <span id="totalPages">1</span>
-        </div>
-
+    <!-- CONTROLES DE NAVEGACIÓN -->
+    <div class="navigation">
+      <button id="prevBtn" class="nav-btn prev-btn" title="Página anterior (←)">
+        <span>←</span>
+      </button>
+      
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+      
+      <button id="nextBtn" class="nav-btn next-btn" title="Página siguiente (→)">
+        <span>→</span>
+      </button>
     </div>
+
+    <!-- MENU FLOTANTE -->
+    <div class="menu-button" title="Menú">
+      <span>⋮</span>
+    </div>
+
+  </div>
+
+  <!-- MENÚ LATERAL -->
+  <div id="sideMenu" class="side-menu">
+    <button id="closeMenu" class="close-menu">✕</button>
+    <h3>Menú</h3>
+    <button id="resumeBtn" class="menu-option">Continuar Lectura</button>
+    <button id="toStartBtn" class="menu-option">Volver al Inicio</button>
+    <button id="statsBtn" class="menu-option">Estadísticas</button>
+    <div class="menu-divider"></div>
+    <p class="menu-info">
+      <strong>Controles:</strong><br>
+      ← → o Flechas del teclado<br>
+      ESC para menú
+    </p>
+  </div>
 
 </div>
 
