@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Historias de la Tripulación</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="bookQuote">
+    Cada villano tiene una historia que contar
+    <span style="font-size: 15px; color:#767433; text-shadow: none; font-weight: 900">¿Quieres saber la suya?</span>
+</div>
+
+<div class="scene">
+
+    <!-- PORTADA -->
+
+    <div id="cover">
+        <img
+        src="https://i.gyazo.com/a68c1fff6f16cb8fee2199ac511af738.png"
+        alt="Portada">
+    </div>
+
+    <!-- LIBRO -->
+
+    <div id="book">
+
+        <!-- IMAGEN DEL LIBRO -->
+
+        <div id="page"></div>
+
+        <!-- CONTENIDO HTML -->
+
+        <div id="pageContent"></div>
+
+        <!-- HOJA QUE GIRA -->
+
+        <div id="pageFlip">
+            <img
+            src="https://i.gyazo.com/c8929fb691d46c15c0ec9ad0656e13ba.png"
+            alt="Página">
+        </div>
+
+        <!-- NAVEGACIÓN -->
+
+        <div id="prevBtn">
+            ❮
+        </div>
+
+        <div id="nextBtn">
+            ❯
+        </div>
+
+        <!-- CONTADOR DE PÁGINAS -->
+        <div id="pageCounter">
+            <span id="currentPage">1</span> / <span id="totalPages">1</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

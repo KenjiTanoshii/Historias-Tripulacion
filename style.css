@@ -1,0 +1,632 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+height:100vh;
+
+overflow:hidden;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-family:Georgia,serif;
+
+}
+
+.scene {
+
+    position: relative;
+
+    margin-top: 40px;
+
+    width: min(85vw, 1100px);
+    height: min(75vh, 700px);
+
+    perspective: 5000px;
+}
+
+/* ==========================
+   PORTADA
+========================== */
+
+#cover{
+
+position:absolute;
+inset:0;
+
+z-index:1000;
+
+transition:1.8s ease;
+
+transform-origin:left center;
+}
+
+#cover.open{
+
+transform:
+perspective(5000px)
+rotateY(-180deg)
+translateX(400px);
+
+}
+
+#cover img{
+
+width:100%;
+height:112%;
+
+object-fit:contain;
+}
+
+/* ==========================
+   LIBRO
+========================== */
+
+#book{
+
+position:absolute;
+
+inset:0;
+
+opacity:0;
+
+transition:1s;
+}
+
+#book.visible{
+
+opacity:1;
+}
+
+/* SOMBRA DEL LOMO */
+
+#book::after{
+
+content:"";
+
+position:absolute;
+
+left:50%;
+top:8%;
+
+transform:translateX(-50%);
+
+width:18px;
+height:84%;
+
+background:
+linear-gradient(
+90deg,
+rgba(0,0,0,.45),
+rgba(255,255,255,.05),
+rgba(0,0,0,.45)
+);
+
+pointer-events:none;
+
+z-index:50;
+}
+
+/* ==========================
+   IMAGEN DEL LIBRO
+========================== */
+
+#page{
+
+position:absolute;
+
+inset:0;
+
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+
+z-index:1;
+}
+
+/* ==========================
+   CONTENIDO
+========================== */
+
+#pageContent{
+
+position:absolute;
+
+inset:0;
+
+z-index:100;
+
+pointer-events:auto;
+}
+
+.page-layout{
+
+position:absolute;
+
+inset:0;
+}
+
+/* ---------- PORTADA INTERIOR ---------- */
+
+.intro-page{
+
+position:absolute;
+
+left:22%;
+top:13%;
+
+width:56%;
+height: 74%;
+overflow: auto;
+
+color:#38210f;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.intro-page h1{
+
+font-family: 'Cinzel Decorative';
+font-size:3rem;
+margin-bottom:30px;
+text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.intro-page p{
+
+font-family: 'EB Garamond';
+line-height:1.8;
+font-size:1.2rem;
+max-width:80%;
+margin-bottom:20px;
+}
+
+/* ---------- PÁGINA DE PERSONAJE ---------- */
+
+.character-page{
+
+position:absolute;
+
+left:22%;
+top:13%;
+
+width:25%;
+height: 74%;
+overflow: auto;
+
+color:#38210f;
+}
+
+.character-page h1{
+
+font-family: 'Cinzel Decorative';
+text-align: left;
+font-size:2rem;
+margin-bottom:15px;
+}
+
+.character-page h2{
+
+font-family: 'EB Garamond';
+font-size:0.95rem;
+color:#6b4423;
+font-weight:600;
+margin-bottom:15px;
+font-style:italic;
+}
+
+.character-page p{
+
+font-family: 'EB Garamond';
+line-height:1.8;
+font-size:1.05rem;
+margin-bottom:15px;
+text-align:justify;
+}
+
+.character-info{
+
+font-family: 'EB Garamond';
+font-size:0.95rem;
+line-height:1.6;
+margin-top:20px;
+padding-top:15px;
+border-top:1px solid rgba(56, 33, 15, 0.2);
+}
+
+.character-info b{
+
+color:#6b4423;
+}
+
+/* ---------- DOBLE PÁGINA ---------- */
+
+.left-page{
+
+position:absolute;
+
+left:22%;
+top:13%;
+
+width:25%;
+height: 74%;
+overflow: auto;
+
+color:#38210f;
+font-family: 'EB Garamond';
+line-height:1.4;
+
+font-size:1.05rem;
+}
+
+.right-page{
+
+position:absolute;
+
+right:19.7%;
+top:13%;
+
+width:25%;
+height: 74%;
+overflow: auto;
+
+color:#38210f;
+font-family: 'EB Garamond';
+line-height:1.4;
+
+font-size:1.05rem;
+}
+
+.left-page h1,
+.right-page h1{
+
+font-family: 'Cinzel Decorative';
+margin-bottom:20px;
+
+font-size:2rem;
+}
+
+.left-page p,
+.right-page p{
+
+font-family: 'EB Garamond';
+line-height:1.8;
+font-size:1.05rem;
+margin-bottom:15px;
+text-align:justify;
+}
+
+.left-page ul,
+.right-page ul{
+
+padding-left:20px;
+
+line-height:2;
+}
+
+/* ==========================
+   HOJA QUE GIRA
+========================== */
+
+#pageFlip{
+
+position:absolute;
+
+top:6%;
+right:6%;
+
+width:39%;
+height:88%;
+
+opacity:0;
+
+pointer-events:none;
+
+transform-origin:left center;
+
+transform-style:preserve-3d;
+
+z-index:300;
+}
+
+#pageFlip img{
+
+width:120%;
+height:105%;
+
+background-size: cover;
+object-fit:contain;
+margin-top: -30px;
+margin-left: -85px;
+
+filter:
+drop-shadow(
+-25px 0 15px rgba(0,0,0,.35)
+);
+}
+
+.flipping{
+
+opacity:1;
+
+animation:
+bookPageFlip 1.4s ease-in-out forwards;
+}
+
+@keyframes bookPageFlip{
+
+0%{
+
+opacity:1;
+
+transform:
+perspective(5000px)
+rotateY(0deg);
+}
+
+15%{
+
+transform:
+perspective(5000px)
+rotateY(-15deg);
+}
+
+35%{
+
+transform:
+perspective(5000px)
+rotateY(-45deg);
+}
+
+50%{
+
+transform:
+perspective(5000px)
+rotateY(-90deg);
+}
+
+70%{
+
+transform:
+perspective(5000px)
+rotateY(-135deg);
+}
+
+90%{
+
+transform:
+perspective(5000px)
+rotateY(-170deg);
+}
+
+100%{
+opacity:0;
+
+transform:
+perspective(5000px)
+rotateY(-180deg);
+}
+}
+
+/* ==========================
+   BOTONES
+========================== */
+
+#prevBtn,
+#nextBtn{
+
+position:absolute;
+
+top:50%;
+
+transform:translateY(-50%);
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+color:#000;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:32px;
+
+cursor:pointer;
+
+user-select:none;
+
+z-index:500;
+
+transition:.3s;
+}
+
+#prevBtn:hover,
+#nextBtn:hover{
+
+transform:
+translateY(-50%)
+scale(1.05);
+}
+
+#prevBtn{
+
+left:25px;
+}
+
+#nextBtn{
+
+right:25px;
+}
+
+/* ==========================
+   CONTADOR DE PÁGINAS
+========================== */
+
+#pageCounter{
+
+position:absolute;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+
+font-family: 'EB Garamond';
+font-size:1.1rem;
+color:#38210f;
+
+z-index:500;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width:1200px){
+
+.character-page,
+.left-page,
+.right-page{
+
+font-size:.9rem;
+}
+
+.character-page h1,
+.left-page h1,
+.right-page h1{
+
+font-size:1.5rem;
+}
+}
+
+@media (max-width:900px){
+
+#prevBtn,
+#nextBtn{
+
+width:55px;
+height:55px;
+
+font-size:24px;
+}
+}
+
+#cover{
+
+cursor:pointer;
+}
+
+#bookQuote{
+
+position:absolute;
+
+top:35px;
+left:50%;
+
+transform:translateX(-50%) rotate(-5deg);
+
+width: 600px;
+
+font-family:'Cinzel Decorative', serif;
+
+font-size:2rem;
+
+text-align: center;
+
+text-shadow:
+1px 1px 0 rgba(0,0,0,.8),
+0 0 15px rgba(255,220,120,.15);
+
+letter-spacing:1px;
+
+color: #a87f48;
+font-weight: 900;
+
+z-index:2000;
+
+pointer-events:none;
+line-height: 40px;
+
+animation:quoteGlow 4s ease-in-out infinite;
+}
+
+@keyframes quoteGlow{
+
+0%,100%{
+
+opacity:.85;
+}
+
+50%{
+
+opacity:1;
+}
+}
+
+/* =================================
+   SCROLL ESTILO CUENTO
+================================= */
+
+.character-page::-webkit-scrollbar,
+.left-page::-webkit-scrollbar,
+.right-page::-webkit-scrollbar,
+.intro-page::-webkit-scrollbar{
+
+width:12px;
+}
+
+.character-page::-webkit-scrollbar-track,
+.left-page::-webkit-scrollbar-track,
+.right-page::-webkit-scrollbar-track,
+.intro-page::-webkit-scrollbar-track{
+
+background:
+rgba(82,52,24,.12);
+
+border-radius:20px;
+
+box-shadow:
+inset 0 0 4px rgba(0,0,0,.15);
+}
+
+.character-page::-webkit-scrollbar-thumb,
+.left-page::-webkit-scrollbar-thumb,
+.right-page::-webkit-scrollbar-thumb,
+.intro-page::-webkit-scrollbar-thumb{
+
+background:
+linear-gradient(
+180deg,
+#b08a55,
+#8a6236
+);
+
+border-radius:20px;
+
+border:2px solid rgba(255,235,190,.2);
+
+box-shadow:
+0 0 4px rgba(0,0,0,.25);
+}
+
+.character-page::-webkit-scrollbar-thumb:hover,
+.left-page::-webkit-scrollbar-thumb:hover,
+.right-page::-webkit-scrollbar-thumb:hover,
+.intro-page::-webkit-scrollbar-thumb:hover{
+
+background:
+linear-gradient(
+180deg,
+#c79b5b,
+#9a6a38
+);
+}
