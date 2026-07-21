@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Leyenda de los Derrotados</title>
+<title>La Leyenda de los Derrotados - Mapa</title>
 
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
@@ -14,91 +14,89 @@
 </head>
 <body>
 
-<div class="container">
+<div class="main-container">
   
   <!-- PANTALLA DE INICIO -->
   <div id="startScreen" class="screen active">
+    <div class="start-overlay"></div>
     <div class="start-content">
       <h1 class="title-main">La Leyenda de los Derrotados</h1>
       <div class="divider"></div>
-      <p class="subtitle">Un cuento sobre villanos, destino y segundas oportunidades</p>
-      <button id="startBtn" class="btn-start">Comenzar la Historia</button>
-      <p class="hint">Presiona ESC en cualquier momento para volver aquí</p>
+      <p class="subtitle">Un mapa de recuerdos, historias de villanos derrotados</p>
+      <button id="startBtn" class="btn-start">Explorar el Mapa</button>
     </div>
   </div>
 
-  <!-- PANTALLA DE LECTURA -->
-  <div id="storyScreen" class="screen">
+  <!-- PANTALLA DEL MAPA -->
+  <div id="mapScreen" class="screen">
     
-    <!-- FONDO VISUAL -->
-    <div id="storyBackground" class="story-bg"></div>
-    
-    <!-- CONTENEDOR PRINCIPAL -->
-    <div class="story-container">
-      
-      <!-- LADO IZQUIERDO - NARRACIÓN -->
-      <div class="narrative-panel">
-        <div class="chapter-info">
-          <span id="chapterNum" class="chapter-number">Cap. 1</span>
-          <h2 id="chapterTitle" class="chapter-title">El Comienzo</h2>
-        </div>
-        
-        <div id="narrativeText" class="narrative-text">
-          <!-- El texto se inserta aquí -->
-        </div>
-        
-        <div class="narrative-footer">
-          <span id="pageIndicator" class="page-indicator">Página 1 de 10</span>
-        </div>
-      </div>
-
-      <!-- LADO DERECHO - PERSONAJE O ILUSTRACIÓN -->
-      <div class="visual-panel">
-        <div id="characterArt" class="character-art">
-          <!-- Imagen o ilustración -->
-        </div>
-        <div id="characterName" class="character-name">
-          <!-- Nombre del personaje o locación -->
-        </div>
-      </div>
-
+    <!-- FONDO DEL MAPA -->
+    <div class="map-background">
+      <div class="map-texture"></div>
     </div>
 
-    <!-- CONTROLES DE NAVEGACIÓN -->
-    <div class="navigation">
-      <button id="prevBtn" class="nav-btn prev-btn" title="Página anterior (←)">
-        <span>←</span>
-      </button>
-      
-      <div class="progress-bar">
-        <div id="progressFill" class="progress-fill"></div>
-      </div>
-      
-      <button id="nextBtn" class="nav-btn next-btn" title="Página siguiente (→)">
-        <span>→</span>
-      </button>
-    </div>
+    <!-- CONTENEDOR DEL MAPA INTERACTIVO -->
+    <div class="map-container">
+      <svg class="map-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="islandGradient" cx="50%" cy="30%">
+            <stop offset="0%" style="stop-color:#d4a574;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#8b7355;stop-opacity:1" />
+          </radialGradient>
+        </defs>
+        <!-- ISLAS (se insertan con JavaScript) -->
+        <g id="islands"></g>
+      </svg>
 
-    <!-- MENU FLOTANTE -->
-    <div class="menu-button" title="Menú">
-      <span>⋮</span>
+      <!-- CONTROLES FLOTANTES -->
+      <div class="map-controls">
+        <button id="backBtn" class="control-btn" title="Volver">← Atrás</button>
+      </div>
+
     </div>
 
   </div>
 
-  <!-- MENÚ LATERAL -->
-  <div id="sideMenu" class="side-menu">
-    <button id="closeMenu" class="close-menu">✕</button>
-    <h3>Menú</h3>
-    <button id="resumeBtn" class="menu-option">Continuar Lectura</button>
-    <button id="toStartBtn" class="menu-option">Volver al Inicio</button>
-    <button id="statsBtn" class="menu-option">Estadísticas</button>
-    <div class="menu-divider"></div>
-    <p class="menu-info">
-      <strong>Controles:</strong><br>
-      ← → o Flechas del teclado<br>
-      ESC para menú
-    </p>
+  <!-- MODAL DE HISTORIA -->
+  <div id="storyModal" class="modal">
+    <div class="modal-overlay"></div>
+    
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">✕</button>
+      
+      <div class="story-header">
+        <h2 id="storyCharacterName" class="story-name">Nombre del Personaje</h2>
+        <p id="storyRole" class="story-role">Rol / Título</p>
+      </div>
+
+      <div class="story-body">
+        <div id="storyText" class="story-text">
+          <!-- Historia se inserta aquí -->
+        </div>
+
+        <div class="story-info">
+          <div class="info-item">
+            <span class="info-label">Edad:</span>
+            <span id="storyAge" class="info-value">—</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Origen:</span>
+            <span id="storyOrigin" class="info-value">—</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Estado:</span>
+            <span id="storyStatus" class="info-value">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-footer">
+        <button id="prevStory" class="story-nav-btn">← Anterior</button>
+        <span id="storyCounter" class="story-counter">1 / 5</span>
+        <button id="nextStory" class="story-nav-btn">Siguiente →</button>
+      </div>
+    </div>
+
   </div>
 
 </div>
