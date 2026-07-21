@@ -80,8 +80,8 @@ let currentStoryIndex = 0;
 // INICIALIZACIÓN
 // ================================
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Página cargada');
+window.addEventListener('load', function() {
+  console.log('DOM completamente cargado');
   initializeMap();
   attachEventListeners();
 });
@@ -191,14 +191,20 @@ function showNextStory() {
 
 function goToMap() {
   console.log('Ir al mapa');
-  document.getElementById('startScreen').classList.remove('active');
-  document.getElementById('mapScreen').classList.add('active');
+  const startScreen = document.getElementById('startScreen');
+  const mapScreen = document.getElementById('mapScreen');
+  
+  startScreen.classList.remove('active');
+  mapScreen.classList.add('active');
 }
 
 function goToStart() {
   console.log('Ir al inicio');
-  document.getElementById('startScreen').classList.add('active');
-  document.getElementById('mapScreen').classList.remove('active');
+  const startScreen = document.getElementById('startScreen');
+  const mapScreen = document.getElementById('mapScreen');
+  
+  startScreen.classList.add('active');
+  mapScreen.classList.remove('active');
   closeStory();
 }
 
@@ -216,8 +222,10 @@ function attachEventListeners() {
   const prevStory = document.getElementById('prevStory');
 
   if (startBtn) {
-    startBtn.addEventListener('click', () => {
-      console.log('Click en Explorar');
+    console.log('startBtn encontrado, adjuntando click listener');
+    startBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('CLICK EN EXPLORAR MAPA');
       goToMap();
     });
   } else {
@@ -225,25 +233,37 @@ function attachEventListeners() {
   }
 
   if (backBtn) {
-    backBtn.addEventListener('click', goToStart);
+    backBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      goToStart();
+    });
   } else {
     console.error('No se encontró backBtn');
   }
 
   if (closeModal) {
-    closeModal.addEventListener('click', closeStory);
+    closeModal.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeStory();
+    });
   } else {
     console.error('No se encontró closeModal');
   }
 
   if (nextStory) {
-    nextStory.addEventListener('click', showNextStory);
+    nextStory.addEventListener('click', function(e) {
+      e.preventDefault();
+      showNextStory();
+    });
   } else {
     console.error('No se encontró nextStory');
   }
 
   if (prevStory) {
-    prevStory.addEventListener('click', showPreviousStory);
+    prevStory.addEventListener('click', function(e) {
+      e.preventDefault();
+      showPreviousStory();
+    });
   } else {
     console.error('No se encontró prevStory');
   }
